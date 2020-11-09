@@ -2,56 +2,58 @@
 
 class Hamburger {
 	constructor(...args) {
-		this.price = 0;
-		this.calories = 0;
-		args.forEach(arg => arg.call(this));
+		this.properties = [...args];
 	}
 
-	static SIZE_SMALL() {
-		this.price += 50;
-		this.calories += 20;
+	static SIZE_SMALL = {
+		price: 50,
+		calories: 20,
 	}
 
-	static SIZE_LARGE() {
-		this.price += 100;
-		this.calories += 40;
+	static SIZE_LARGE = {
+		price: 100,
+		calories: 40,
 	}
 
-	static STUFFING_CHEESE() {
-		this.price += 10;
-		this.calories += 20;
+	static STUFFING_CHEESE = {
+		price: 10,
+		calories: 20,
 	}
 
-	static STUFFING_SALAD() {
-		this.price += 20;
-		this.calories += 5;
+	static STUFFING_SALAD = {
+		price: 20,
+		calories: 5,
 	}
 
-	static STUFFING_POTATO() {
-		this.price += 15;
-		this.calories += 10;
+	static STUFFING_POTATO = {
+		price: 15,
+		calories: 10,
 	}
 
-	static TOPPING_SAUCE() {
-		this.price += 15;
-		this.calories += 0;
+	static TOPPING_SAUCE = {
+		price: 15,
+		calories: 0,
 	}
 
-	static TOPPING_MAYO() {
-		this.price += 20;
-		this.calories += 5;
+	static TOPPING_MAYO = {
+		price: 20,
+		calories: 5,
 	}
 
 	addTopping(...toppings) {
-		toppings.forEach(topping => topping.call(this));
+		this.properties.push(...toppings);
 	}
 
 	calculatePrice() {
-		return this.price;
+		let price = 0;
+		this.properties.map(property => price += property.price);
+		return price;
 	}
 
 	calculateCalories() {
-		return this.calories;
+		let calories = 0;
+		this.properties.map(property => calories += property.calories);
+		return calories;
 	}
 
 };
